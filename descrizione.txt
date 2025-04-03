@@ -1,0 +1,11 @@
+LOGIN
+LEGHE (gruppi di persone con piu giocatori) -> faremo 2 leghe
+UNA VOLTA ENTRATI ci saranno 8 partecipanti
+dal menu possiamo entrare nel mercato con tutti i giocatori e quanto valgono
+DEVO FARE LA SQUAD CON LI BUDGET CHE POSSIEDO, confermo e gli altri giocatori non potranno avere i miei giocatori
+CALENDARIO dove ci sono partite e create randomicamente tra squad, poi tutti poupnti vittorie.
+
+
+giocatori statistiche
+la partita la definisce il punteggio
+punteggi variano dal quotidiano, ne prendiamo in considerazione 1, i punteggi variano in base ai goal/assist (…)
