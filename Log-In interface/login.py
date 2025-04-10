@@ -23,13 +23,28 @@ def create_account():
     password = password_entry.get()
     if username and password:
         try:
+            with open("user_data.txt", "r") as file:
+                users = file.readlines()
+                for user in users:
+                    saved_username, _ = user.strip().split(",")
+                    if username == saved_username:
+                        error_label.config(text="Nome utente già esistente", fg="red")
+                        return
+            # Se il nome utente non esiste, creiamo l'account
             with open("user_data.txt", "a") as file:
                 file.write(f"{username},{password}\n")
             messagebox.showinfo("Account", "Account creato con successo!")
+            error_label.config(text="")  # Rimuove eventuali messaggi di errore
+        except FileNotFoundError:
+            # Se il file non esiste, creiamo un nuovo file e aggiungiamo l'account
+            with open("user_data.txt", "w") as file:
+                file.write(f"{username},{password}\n")
+            messagebox.showinfo("Account", "Account creato con successo!")
+            error_label.config(text="")  # Rimuove eventuali messaggi di errore
         except Exception as e:
             messagebox.showerror("Errore", f"Errore durante la creazione dell'account: {e}")
     else:
-        messagebox.showwarning("Attenzione", "Inserisci un nome utente e una password validi.")
+        error_label.config(text="Inserisci un nome utente e una password validi", fg="red")
 
 # Funzione per cambiare il colore del bottone al passaggio del mouse
 def on_enter(event):
