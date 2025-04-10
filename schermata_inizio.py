@@ -2,7 +2,6 @@ import tkinter as tk
 import tkinter.font as tkFont
 import pyglet
 import itertools
-import itertools
 import time
 
 def on_key_press(event):
@@ -45,10 +44,6 @@ label1 = tk.Label(root, text="FANTA-ALCHIMISTI", font=("Poppins", 18))
 label1.pack(pady=20)
 
 # Rotellina simulata (sostituire con la tua implementazione Rotellina)
-rotellina = Rotellina(root)
-
-# Fai comparire label2 dopo 3 secondi
-root.after(3000, mostra_label2)
 
 root.mainloop()
 

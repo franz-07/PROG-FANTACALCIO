@@ -123,9 +123,7 @@ def login_screen():
         entry.bind("<FocusIn>", lambda e, entry=entry, ph=field["placeholder"]: on_entry_click(entry, ph))
         entry.bind("<FocusOut>", lambda e, entry=entry, ph=field["placeholder"]: on_focusout(entry, ph))
 
-    # Link password dimenticata
-    tk.Label(root, text="Password dimenticata?", font=font_normal, fg=BUTTON_COLOR, bg=BG_COLOR).place(x=390, y=480, anchor="e")
-
+    
     # Pulsante Accedi
     btn = tk.Button(root, text="ACCEDI", font=font_button, bg=BUTTON_COLOR, fg="white", command=show_empty_screen)
     btn.place(x=40, y=520, width=350, height=50)
