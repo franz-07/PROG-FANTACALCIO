@@ -76,7 +76,7 @@ def registration_screen():
         entry.pack(fill="both", expand=True, padx=10, pady=10)
         entry.insert(0, field["placeholder"])
         entry.config(show=field["show"])
-        
+       
         # Bind per i placeholder
         entry.bind("<FocusIn>", lambda e, entry=entry, ph=field["placeholder"]: on_entry_click(entry, ph))
         entry.bind("<FocusOut>", lambda e, entry=entry, ph=field["placeholder"]: on_focusout(entry, ph))
