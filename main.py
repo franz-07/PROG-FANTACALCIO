@@ -1,6 +1,8 @@
 import tkinter as tk
 from schermata_inizio import SchermataInizio
 from login import SchermataLogin
+from home import SchermataHome
+
 
 class App(tk.Tk):
     def __init__(self):
@@ -16,6 +18,9 @@ class App(tk.Tk):
 
     def mostra_schermata_login(self):
         self.cambia_frame("login", SchermataLogin)
+
+    def mostra_schermata_home(self, username):  # Aggiungi il parametro username
+        self.cambia_frame("home", lambda master: SchermataHome(master, username))
 
     def cambia_frame(self, nome, frame_class):
         if nome in self.schermate:

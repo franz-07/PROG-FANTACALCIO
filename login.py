@@ -41,6 +41,7 @@ class SchermataLogin(tk.Frame):
             if username == saved_username:
                 if password == saved_password:
                     messagebox.showinfo("Login", "Login effettuato con successo!")
+                    self.master.mostra_schermata_home(username)
                     return
                 else:
                     self.error_label.config(text="Password errata", fg="red")
