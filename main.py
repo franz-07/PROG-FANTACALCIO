@@ -2,9 +2,9 @@ import tkinter as tk
 from schermata_inizio import SchermataInizio
 from login import SchermataLogin
 from home import SchermataHome
+from giocatori import giocatori
 
-
-class App(tk.Tk):
+class App(tk.Tk): #tk.Tk rende la finestra App direttamente il root
     def __init__(self):
         super().__init__()
         self.title("FANTA-ALCHIMISTI")
@@ -20,7 +20,7 @@ class App(tk.Tk):
         self.cambia_frame("login", SchermataLogin)
 
     def mostra_schermata_home(self, username):  # Aggiungi il parametro username
-        self.cambia_frame("home", lambda master: SchermataHome(master, username))
+        self.cambia_frame("home", lambda master: SchermataHome(master, username, giocatori))
 
     def cambia_frame(self, nome, frame_class):
         if nome in self.schermate:
