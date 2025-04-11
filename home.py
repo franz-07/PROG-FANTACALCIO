@@ -10,7 +10,7 @@ class SchermataHome(tk.Frame):
         self.tabella_giocatori(giocatori)
 
     def tabella_giocatori(self, giocatori):
-        colonne = ("Nome", "Squadra", "Classe", "Numero", "SI/NO")
+        colonne = ("Nome", "Squadra", "Ruoli", "Numero Maglia", "SI/NO")
         tabella = ttk.Treeview(self, columns=colonne, show="headings")
         tabella.pack(fill="none", expand=True, padx=10, pady=10)
         
