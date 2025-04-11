@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+import os
 
 class SchermataLogin(tk.Frame):
     def __init__(self, master):
@@ -23,32 +24,49 @@ class SchermataLogin(tk.Frame):
         self.error_label.grid(row=4, column=0, columnspan=3)
 
         self.create_account_button.bind("<Enter>", lambda e: self.create_account_button.config(fg="blue"))
-        self.create_account_button.bind("<Leave>", lambda e: self.create_account_button.config(fg="black"))
+        self.create_account_button.bind("<Leave>", lambda e: self.create_account_button.config(fg="black")) #bind collega evento ad una funzione (qui se entro ed eseco dal bottone col mouse cambia colore)
 
     def login(self):
-        username = self.username_entry.get()
-        password = self.password_entry.get()
-        try:
-            with open("user_data.txt", "r") as file:
-                users = file.readlines()
-                for user in users:
-                    saved_username, saved_password = user.strip().split(",")
-                    if username == saved_username and password == saved_password:
-                        messagebox.showinfo("Login", "Login effettuato con successo!")
-                        return
-            self.error_label.config(text="Nome utente o password errati", fg="red")
-        except FileNotFoundError:
-            self.error_label.config(text="File user_data.txt non trovato", fg="red")
+        username = self.username_entry.get().strip() # strip rimuove gli spazi da una stringa
+        password = self.password_entry.get().strip()
+
+        if not os.path.exists("user_data.txt"):
+            self.error_label.config(text="Nessun account registrato!", fg="red")
+            return
+
+        with open("user_data.txt", "r") as file:
+            users = [line.strip().split(",") for line in file.readlines()]
+
+        for saved_username, saved_password in users:
+            if username == saved_username:
+                if password == saved_password:
+                    messagebox.showinfo("Login", "Login effettuato con successo!")
+                    return
+                else:
+                    self.error_label.config(text="Password errata", fg="red")
+                    return
+
+        self.error_label.config(text="Utente non trovato", fg="red")
 
     def create_account(self):
-        username = self.username_entry.get()
-        password = self.password_entry.get()
-        if username and password:
-            try:
-                with open("user_data.txt", "a") as file:
-                    file.write(f"{username},{password}\n")
-                messagebox.showinfo("Account", "Account creato con successo!")
-            except Exception as e:
-                messagebox.showerror("Errore", f"Errore durante la creazione dell'account: {e}")
-        else:
+        username = self.username_entry.get().strip()
+        password = self.password_entry.get().strip()
+
+        if not username or not password:
             messagebox.showwarning("Attenzione", "Inserisci un nome utente e una password validi.")
+            return
+
+        if os.path.exists("user_data.txt"):
+            with open("user_data.txt", "r") as file:
+                users = [line.strip().split(",")[0] for line in file.readlines()]
+                if username in users:
+                    self.error_label.config(text="Questo nome utente è già registrato", fg="red")
+                    return
+
+        try:
+            with open("user_data.txt", "a") as file:
+                file.write(f"{username},{password}\n")
+            messagebox.showinfo("Account", "Account creato con successo!")
+            self.error_label.config(text="")  # Pulisce errori precedenti
+        except Exception as e:
+            messagebox.showerror("Errore", f"Errore durante la creazione dell'account: {e}")
