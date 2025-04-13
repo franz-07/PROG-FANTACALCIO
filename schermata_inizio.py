@@ -16,7 +16,7 @@ class SchermataInizio(tk.Frame):
         self.after(2000, self.mostra_label2)  # Aspetta 2s prima di mostrare label2
 
     def mostra_label2(self):
-        self.label2 = tk.Label(self, text="Premi qualsiasi tasto per iniziare", font=("Poppins", 9))
+        self.label2 = tk.Label(self, text="Premi qualsiasi tasto per iniziare", font=("Poppins", 11))
         self.label2.pack(pady=20)
         self.bind_all("<Key>", self.on_key_press)
 

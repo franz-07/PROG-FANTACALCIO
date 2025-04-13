@@ -8,7 +8,8 @@ class App(tk.Tk): #tk.Tk rende la finestra App direttamente il root
     def __init__(self):
         super().__init__()
         self.title("FANTA-ALCHIMISTI")
-        self.geometry("450x700")
+        self.geometry("1080x720")
+    
     
         self.schermate = {}
         self.mostra_schermata_inizio()

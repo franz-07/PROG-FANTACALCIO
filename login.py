@@ -2,13 +2,16 @@ import customtkinter as ctk
 from tkinter import messagebox
 import os
 import random
+import pyglet
+
+pyglet.font.add_file("Poppins-Regular.ttf")
 
 class SchermataLogin(ctk.CTkFrame):
     def __init__(self, master):
         super().__init__(master)
 
-        ctk.CTkLabel(self, text="Nome utente:", font=("Arial", 16)).grid(row=0, column=0, padx=20, pady=10, sticky="e")
-        self.username_entry = ctk.CTkEntry(self, font=("Arial", 16))
+        ctk.CTkLabel(self, text="Nome utente:", font=("Poppins", 16)).grid(row=0, column=0, padx=20, pady=10, sticky="e")
+        self.username_entry = ctk.CTkEntry(self, font=("Poppins", 16))
         self.username_entry.grid(row=0, column=1, padx=20, pady=10, sticky="w")
         self.username_entry.bind("<KeyRelease>", self.check_fields)
 
