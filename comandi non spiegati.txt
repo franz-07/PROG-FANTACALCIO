@@ -1,0 +1,81 @@
+--------------------------------------------------------------------------------------------------
+                        LAMBDA:
+lambda è un modo veloce per scrivere una funzione “al volo”.
+È utile quando devi passare una funzione a un bottone o a .bind() ma non ti serve darle un nome.
+
+esempio:
+bottone.bind("<Enter>", lambda e: bottone.config(fg="blue"))
+
+lambda e: è una funzione anonima, cioè senza nome.
+e è l’argomento della funzione, e rappresenta l’evento (e = event, abbreviato).
+Dopo i : scrivi quello che deve fare.
+
+esempi per far capire meglio:
+    - def saluta(nome):
+        print("Ciao", nome)
+
+    - saluta = lambda nome: print("Ciao", nome)
+
+    - bottone.bind("<Leave>", lambda e: bottone.config(fg="black"))
+
+lambda e: bottone.config(fg="blue")  ✅  ← giusto!
+lambda: bottone.config(fg="blue")    ❌  ← errore!
+
+in riassunto:
+Cosa	        Significa
+lambda	        Funzione anonima, veloce
+e:	            L'evento passato da .bind()
+lambda e:	    Mini-funzione che riceve l'evento
+
+
+--------------------------------------------------------------------------------------------------
+                        FG:
+fg sta per foreground — ovvero il colore del testo (di solito nei Label, Button, ecc).
+
+esempio:
+tk.Label(root, text="Ciao!", fg="red").pack()
+
+Opzione	    Significato	            Esempio
+fg	        Colore del testo	    fg="blue"
+bg	        Colore dello sfondo	    bg="black"
+
+
+--------------------------------------------------------------------------------------------------
+                        BIND:
+Il metodo .bind() collega un evento a una funzione.
+Cioè: "quando succede qualcosa, fai questa cosa" 😎
+
+esempio:
+def saluta(event):
+    print("Hai cliccato sul bottone!")
+
+bottone = tk.Button(root, text="Cliccami")
+bottone.pack()
+
+bottone.bind("<Button-1>", saluta)  # <Button-1> = click sinistro
+
+- comandi piu comuni:
+Evento	    Significato
+<Button-1>	Click tasto sinistro del mouse
+<Button-2>	Click tasto centrale
+<Button-3>	Click tasto destro
+<Enter>	    Il mouse entra nel widget
+<Leave>	    Il mouse esce dal widget
+<Key>	    Viene premuto un tasto
+<Return>	Invio
+<Escape>	ESC
+
+
+--------------------------------------------------------------------------------------------------
+                        STRIP:
+Il metodo .strip() serve per pulire le stringhe:
+👉 toglie gli spazi (e altri caratteri) all'inizio e alla fine della stringa.
+
+esempio:
+nome = "  Mario  "
+print(nome.strip())  # → "Mario"
+
+Metodo	    Cosa fa
+strip()	    Togli a sinistra e destra
+lstrip()	Togli solo a sinistra
+rstrip()	Togli solo a destra

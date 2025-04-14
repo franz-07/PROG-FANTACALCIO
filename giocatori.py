@@ -146,7 +146,7 @@ giocatori = {
     "De Ketelaere": ["Atalanta", "C", 27, "SI"],
     "De Marzi": ["Roma", "P", 1, "NO"],
     "De Nipoti": ["Atalanta", "A", 1, "SI"],
-    "De Pieri": ["Inter", "A", 1, "NO"
+    "De Pieri": ["Inter", "A", 1, "NO"],
     "De Roon": ["Atalanta", "C", 19, "NO"],
     "De Sciglio": ["Empoli", "D", 2, "NO"],
     "De Silvestri": ["Bologna", "D", 6, "NO"],
@@ -187,7 +187,7 @@ giocatori = {
     "El Azzouzi": ["Bologna", "C", 5, "NO"],
     "El Haddad": ["Venezia", "C", 1, "SI"],
     "El Shaarawy": ["Roma", "A", 13, "SI"],
-    "Eletu": ["Milan", "C", 2, "NO"]
+    "Eletu": ["Milan", "C", 2, "NO"],
     "Ellertsson": ["Venezia", "C", 10, "NO"],
     "Elmas": ["Torino", "C", 15, "NO"],
     "Emerson Royal": ["Milan", "D", 9, "NO"],
@@ -393,7 +393,7 @@ giocatori = {
     "Ndour": ["Fiorentina", "C", 6, "NO"],
     "Ndoye": ["Bologna", "C", 20, "SI"],
     "Nelsson": ["Roma", "D", 7, "NO"],
-    "Neres": ["Napoli", "A", 19, "SI"]
+    "Neres": ["Napoli", "A", 19, "SI"],
     "Ngonge": ["Napoli", "A", 8, "SI"],
     "Niasse": ["Verona", "C", 2, "NO"],
     "Nico Paz": ["Como", "C", 21, "SI"],
@@ -493,7 +493,7 @@ giocatori = {
     "Rovella": ["Lazio", "C", 12, "NO"],
     "Rrahmani": ["Napoli", "D", 15, "NO"],
     "Rubino T": ["Fiorentina", "C", 1, "NO"],
-    "Ruggeri": ["Atalanta", "D", 9, "NO"]
+    "Ruggeri": ["Atalanta", "D", 9, "NO"],
     "Rui Modesto": ["Udinese", "D", 6, "NO"],
     "Rui Patricio": ["Atalanta", "P", 4, "NO"],
     "Russo L": ["Torino", "C", 1, "NO"],
@@ -593,7 +593,7 @@ giocatori = {
     "Vlahovic V": ["Atalanta", "A", 2, "NO"],
     "Vlasic": ["Torino", "C", 18, "SI"],
     "Vogliacco": ["Parma", "D", 4, "NO"],
-    "Vojvoda": ["Como", "D", 8, "NO"]
+    "Vojvoda": ["Como", "D", 8, "NO"],
     "Vos": ["Milan", "C", 2, "NO"],
     "Walker": ["Milan", "D", 10, "NO"],
     "Walukiewicz": ["Torino", "D", 5, "NO"],
