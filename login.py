@@ -15,19 +15,19 @@ class SchermataLogin(ctk.CTkFrame):
         self.username_entry.grid(row=0, column=1, padx=20, pady=10, sticky="w")
         self.username_entry.bind("<KeyRelease>", self.check_fields)
 
-        ctk.CTkLabel(self, text="Password:", font=("Arial", 16)).grid(row=1, column=0, padx=20, pady=10, sticky="e")
-        self.password_entry = ctk.CTkEntry(self, show="*", font=("Arial", 16))
+        ctk.CTkLabel(self, text="Password:", font=("Poppins", 16)).grid(row=1, column=0, padx=20, pady=10, sticky="e")
+        self.password_entry = ctk.CTkEntry(self, show="*", font=("Poppins", 16))
         self.password_entry.grid(row=1, column=1, padx=20, pady=10, sticky="w")
         self.password_entry.bind("<KeyRelease>", self.check_fields)
 
         self.create_account_button = ctk.CTkButton(self, text="Non hai un account? Crealo ora!", command=self.create_account, width=200, font=("Arial", 12))
         self.create_account_button.grid(row=2, column=0, columnspan=2, pady=10)
 
-        self.login_button = ctk.CTkButton(self, text="Login", command=self.login, width=200, font=("Arial", 16), fg_color="red")
+        self.login_button = ctk.CTkButton(self, text="Login", command=self.login, width=200, font=("Poppins", 16), fg_color="red")
         self.login_button.grid(row=3, column=0, columnspan=2, pady=20)
         self.login_button.bind("<Enter>", self.move_button)
 
-        self.error_label = ctk.CTkLabel(self, text="", text_color="red", font=("Arial", 14))
+        self.error_label = ctk.CTkLabel(self, text="", text_color="red", font=("Poppins", 14))
         self.error_label.grid(row=4, column=0, columnspan=2)
 
     def move_button(self, event):
