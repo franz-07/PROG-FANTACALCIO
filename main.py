@@ -20,8 +20,24 @@ class App(tk.Tk): #tk.Tk rende la finestra App direttamente il root
     def mostra_schermata_login(self):
         self.cambia_frame("login", SchermataLogin)
 
-    def mostra_schermata_home(self, username):  # Aggiungi il parametro username
-        self.cambia_frame("home", lambda master: SchermataHome(master, username, giocatori))
+    def mostra_schermata_home(self, username):
+        # Se esiste già una schermata home, distruggila
+        if "home" in self.schermate:
+            self.schermate["home"].destroy()
+            del self.schermate["home"]
+        
+        # Crea una nuova schermata home per l'utente
+        frame = SchermataHome(self, username, giocatori)
+        self.schermate["home"] = frame
+
+        # Nascondi tutti gli altri frame
+        for i in self.schermate.values():
+            if i != frame:
+                i.pack_forget()
+
+        # Mostra la nuova schermata home
+        frame.pack(fill="both", expand=True)
+
 
     def cambia_frame(self, nome, frame_class):
         if nome in self.schermate:
@@ -31,8 +47,8 @@ class App(tk.Tk): #tk.Tk rende la finestra App direttamente il root
             self.schermate[nome] = frame
 
         # Rimuovi tutti i frame visibili
-        for f in self.schermate.values():
-            f.pack_forget()
+        for i in self.schermate.values():
+            i.pack_forget()
 
         # Mostra il frame attuale
         frame.pack(fill="both", expand=True)

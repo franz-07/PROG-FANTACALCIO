@@ -15,7 +15,7 @@ class SchermataHome(ctk.CTkFrame):
         self.master = master
         ctk.set_appearance_mode("dark")
         ctk.CTkLabel(self, text=f"Loggato come: {username}!", font=("Poppins", 10)).pack(anchor="ne", padx=5, pady=5)
-        ctk.CTkButton(self, text="Esci", command=master.mostra_schermata_login).pack(anchor="ne", padx=5, pady=5)
+        ctk.CTkButton(self, text="Esci", command=self.logout).pack(anchor="ne", padx=5, pady=5)
 
         self.menu_tendina()
 
@@ -24,14 +24,14 @@ class SchermataHome(ctk.CTkFrame):
         self.frame_tabella = ctk.CTkFrame(self)
         self.frame_tabella.pack(fill="none", expand=True, padx=10, pady=10)
 
-        # X per chiudere la tabella
+        # croce per chiudere la tabella
         ctk.CTkButton(self.frame_tabella, text="X", command=self.chiudi_tabella, width=30).pack(anchor="ne", padx=5, pady=5)
 
         tabella = ttk.Treeview(self.frame_tabella, columns=colonne, show="headings") #treewiew crea la struttura ad albero o in una tabella (da noi la tabella)
         for colonna in colonne:
             tabella.heading(colonna, text=colonna)
 
-        for nome, dati in giocatori.items():  # Assumo che il file giocatori contenga dati_giocatori
+        for nome, dati in giocatori.items():  #prendo valori che il file giocatori contenga dati_giocatori
             tabella.insert('', 'end', values=(nome, *dati))
 
         tabella.pack(side="left", fill="none", expand=True)
@@ -91,4 +91,6 @@ class SchermataHome(ctk.CTkFrame):
             self.frame_tabella = None
         self.tabella_visibile = False
 
+    def logout(self):
+        self.master.mostra_schermata_login()
 #letszgohsky

@@ -79,3 +79,11 @@ Metodo	    Cosa fa
 strip()	    Togli a sinistra e destra
 lstrip()	Togli solo a sinistra
 rstrip()	Togli solo a destra
+
+
+--------------------------------------------------------------------------------------------------
+                        GRIND:
+grid() distribuisce i widget in una griglia, con righe e colonne
+label.grid(row=0, column=0)
+entry.grid(row=0, column=1)
+Questo mette la label nella cella (0, 0) e l’entry nella cella (0, 1), affiancati orizzontalmente.
