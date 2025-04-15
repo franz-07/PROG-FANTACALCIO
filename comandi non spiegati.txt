@@ -81,9 +81,34 @@ lstrip()	Togli solo a sinistra
 rstrip()	Togli solo a destra
 
 
---------------------------------------------------------------------------------------------------
-                        GRIND:
-grid() distribuisce i widget in una griglia, con righe e colonne
-label.grid(row=0, column=0)
-entry.grid(row=0, column=1)
-Questo mette la label nella cella (0, 0) e l’entry nella cella (0, 1), affiancati orizzontalmente.
+--------------------------------------------------------------------------------------------------  pack/grid/place!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        PACK:
+pack è il più semplice dei tre.
+Funziona come se dicessi: “Metti questo sopra, questo sotto, questo a sinistra, ecc.”
+È facile da usare ma non super preciso.
+
+--------------------------------------------------------------------------------------------------  pack/grid/place!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        GRID:
+grid funziona come se dividessi la finestra in una tabella fatta di righe e colonne.
+È molto comodo per creare form, menu, o schede organizzate.
+
+tk.Label(root, text="Username").grid(row=0, column=0)
+tk.Entry(root).grid(row=0, column=1)
+tk.Label(root, text="Password").grid(row=1, column=0)
+tk.Entry(root, show="*").grid(row=1, column=1)
+
+Questo crea due righe con label e input affiancati
+
+--------------------------------------------------------------------------------------------------  pack/grid/place!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        PLACE:
+place ti dà il controllo totale: puoi mettere ogni widget dove vuoi, pixel per pixel.
+Ma è anche il più pericoloso, perché non si adatta bene se ridimensioni la finestra.
+
+label = tk.Label(root, text="Login")
+label.place(x=100, y=50)
+
+riepilogo:
+Metodo  |   Controllo   | Adattabile    | Semplicità    | Uso tipico
+pack    |   Basso       | Medio         | Altissima     | Layout semplice e verticale
+grid    |   Medio       | Alto          | Buona         | Layout a righe/colonne
+place   |   Altissimo   | Basso         | Media         | Posizionamento preciso (animazioni, giochi)
