@@ -93,4 +93,4 @@ class SchermataHome(ctk.CTkFrame):
 
     def logout(self):
         self.master.mostra_schermata_login()
-#letszgohsky
+#letszgohsky #flezz

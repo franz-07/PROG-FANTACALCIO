@@ -9,37 +9,60 @@ pyglet.font.add_file("Poppins-Regular.ttf")
 class SchermataLogin(ctk.CTkFrame):
     def __init__(self, master):
         super().__init__(master)
+        self.master = master
 
-        ctk.CTkLabel(self, text="Nome utente:", font=("Poppins", 16)).grid(row=0, column=0, padx=20, pady=10, sticky="e")
-        self.username_entry = ctk.CTkEntry(self, font=("Poppins", 16))
-        self.username_entry.grid(row=0, column=1, padx=20, pady=10, sticky="w")
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_rowconfigure(1, weight=0)
+        self.grid_rowconfigure(2, weight=1)
+        self.grid_columnconfigure(0, weight=1)
+        self.grid_columnconfigure(1, weight=0)
+        self.grid_columnconfigure(2, weight=1)
+
+        self.frame_centrale = ctk.CTkFrame(self)
+        self.frame_centrale.place(relx=0.5, rely=0.4, anchor="center")
+
+        ctk.CTkLabel(self.frame_centrale, text="Nome utente:", font=("Poppins", 16)).grid(row=0, column=0, padx=10, pady=5, sticky="e")
+        self.username_entry = ctk.CTkEntry(self.frame_centrale, font=("Poppins", 16))
+        self.username_entry.grid(row=0, column=1, padx=10, pady=5, sticky="w")
         self.username_entry.bind("<KeyRelease>", self.check_fields)
 
-        ctk.CTkLabel(self, text="Password:", font=("Poppins", 16)).grid(row=1, column=0, padx=20, pady=10, sticky="e")
-        self.password_entry = ctk.CTkEntry(self, show="*", font=("Poppins", 16))
-        self.password_entry.grid(row=1, column=1, padx=20, pady=10, sticky="w")
+        ctk.CTkLabel(self.frame_centrale, text="Password:", font=("Poppins", 16)).grid(row=1, column=0, padx=10, pady=5, sticky="e")
+        self.password_entry = ctk.CTkEntry(self.frame_centrale, show="*", font=("Poppins", 16))
+        self.password_entry.grid(row=1, column=1, padx=10, pady=5, sticky="w")
         self.password_entry.bind("<KeyRelease>", self.check_fields)
 
-        self.create_account_button = ctk.CTkButton(self, text="Non hai un account? Crealo ora!", command=self.create_account, width=200, font=("Arial", 12))
+        self.create_account_button = ctk.CTkButton(
+            self.frame_centrale,
+            text="Non hai un account? Crealo ora!",
+            command=self.master.mostra_schermata_registra,
+            width=200, font=("Arial", 12))
         self.create_account_button.grid(row=2, column=0, columnspan=2, pady=10)
 
-        self.login_button = ctk.CTkButton(self, text="Login", command=self.login, width=200, font=("Poppins", 16), fg_color="red")
-        self.login_button.grid(row=3, column=0, columnspan=2, pady=20)
+        self.error_label = ctk.CTkLabel(self.frame_centrale, text="", text_color="red", font=("Poppins", 14))
+        self.error_label.grid(row=3, column=0, columnspan=2)
+
+        self.login_button = ctk.CTkButton(
+            self,
+            text="Login",
+            command=self.login,
+            width=200,
+            font=("Poppins", 16),
+            fg_color="red")
+        self.login_button.place(relx=0.5, rely=0.75, anchor="center")
         self.login_button.bind("<Enter>", self.move_button)
 
-        self.error_label = ctk.CTkLabel(self, text="", text_color="red", font=("Poppins", 14))
-        self.error_label.grid(row=4, column=0, columnspan=2)
+        self.login_button_original_pos = (0.5, 0.75)
 
     def move_button(self, event):
         if not self.fields_filled():
-            x = random.randint(0, 300)
-            y = random.randint(0, 500)
-            self.login_button.place(x=x, y=y)
+            new_x = random.uniform(0.1, 0.9)
+            new_y = random.uniform(0.6, 0.9)
+            self.login_button.place(relx=new_x, rely=new_y, anchor="center")
 
     def reset_button_position(self):
-        self.login_button.place(x=70, y=200)
+        self.login_button.place(relx=self.login_button_original_pos[0], rely=self.login_button_original_pos[1], anchor="center")
 
-    def check_fields(self, event):
+    def check_fields(self, event=None):
         if self.fields_filled():
             self.reset_button_position()
             self.login_button.unbind("<Enter>")
@@ -76,26 +99,3 @@ class SchermataLogin(ctk.CTkFrame):
                     return
 
         self.error_label.configure(text="Utente non trovato")
-
-    def create_account(self):
-        username = self.username_entry.get().strip()
-        password = self.password_entry.get().strip()
-
-        if not username or not password:
-            messagebox.showwarning("Attenzione", "Inserisci un nome utente e una password validi.")
-            return
-
-        if os.path.exists("user_data.txt"):
-            with open("user_data.txt", "r") as file:
-                users = [line.strip().split(",")[0] for line in file.readlines()]
-                if username in users:
-                    self.error_label.configure(text="Questo nome utente è già registrato")
-                    return
-
-        try:
-            with open("user_data.txt", "a") as file:
-                file.write(f"{username},{password}\n")
-            messagebox.showinfo("Account", "Account creato con successo!")
-            self.error_label.configure(text="")
-        except Exception as e:
-            messagebox.showerror("Errore", f"Errore durante la creazione dell'account: {e}")
