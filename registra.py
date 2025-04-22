@@ -85,4 +85,4 @@ class SchermataRegistra(ctk.CTkFrame):
             file.write(f"{username},{password}\n")
 
         messagebox.showinfo("Registrazione", "Utente registrato con successo!")
-        self.master.mostra_schermata_home(username)
+        self.master.mostra_schermata_leghe(username)

@@ -97,7 +97,7 @@ class SchermataLogin(ctk.CTkFrame):
                     self.error_label.configure(text="")
                     self.reset_button_position()
                     self.login_button.unbind("<Enter>")
-                    self.master.mostra_schermata_home(username)
+                    self.master.mostra_schermata_leghe(username)
                     return
                 else:
                     self.error_label.configure(text="Password errata")
