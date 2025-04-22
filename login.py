@@ -3,6 +3,7 @@ from tkinter import messagebox
 import os
 import random
 import pyglet
+from PIL import Image
 
 pyglet.font.add_file("Poppins-Regular.ttf")
 
@@ -17,6 +18,10 @@ class SchermataLogin(ctk.CTkFrame):
         self.grid_columnconfigure(0, weight=1)
         self.grid_columnconfigure(1, weight=0)
         self.grid_columnconfigure(2, weight=1)
+
+        logo_image = ctk.CTkImage(light_image=Image.open("fantalclogo.png"), size=(180, 81))
+        self.logo_label = ctk.CTkLabel(self, image=logo_image, text="")
+        self.logo_label.place(relx=0.5, rely=0.15, anchor="center")
 
         self.frame_centrale = ctk.CTkFrame(self)
         self.frame_centrale.place(relx=0.5, rely=0.4, anchor="center")
