@@ -40,7 +40,7 @@ class App(tk.Tk):
         
         frame.pack(fill="both", expand=True)
 
-    def mostra_schermata_home(self, username):
+    def mostra_schermata_home(self, username, lega):
         # Rimuove qualsiasi binding globale di tasti
         self.unbind_all("<Key>")
         # Se esiste già la home, distruggila
@@ -48,7 +48,7 @@ class App(tk.Tk):
             self.schermate["home"].destroy()
             del self.schermate["home"]
 
-        frame = SchermataHome(self, username, giocatori)
+        frame = SchermataHome(self, username, giocatori, lega)
         self.schermate["home"] = frame
 
         # Nascondi tutti gli altri frame

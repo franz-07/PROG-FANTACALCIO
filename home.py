@@ -10,12 +10,14 @@ from giocatori import giocatori
 pyglet.font.add_file("Poppins-Regular.ttf")
 
 class SchermataHome(ctk.CTkFrame):
-    def __init__(self, master, username, giocatori):
+    def __init__(self, master, username, giocatori, lega):
         super().__init__(master)
         self.master = master
         ctk.set_appearance_mode("dark")
         ctk.CTkLabel(self, text=f"Loggato come: {username}!", font=("Poppins", 10)).pack(anchor="ne", padx=5, pady=5)
         ctk.CTkButton(self, text="Esci", command=self.logout).pack(anchor="ne", padx=5, pady=5)
+
+        ctk.CTkLabel(self, text=f"lega: {lega}!", font=("Poppins", 10)).pack(anchor="ne", padx=5, pady=5)
 
         self.menu_tendina()
 

@@ -8,6 +8,7 @@ class SchermataLeghe(ctk.CTkFrame):
     def __init__(self, master, username):
         super().__init__(master)
         self.master = master
+        self.username = username
 
         # Display username and logout button
         ctk.CTkLabel(self, text=f"Loggato come: {username}!", font=("Poppins", 12)).pack(anchor="ne", padx=5, pady=5)
@@ -24,7 +25,10 @@ class SchermataLeghe(ctk.CTkFrame):
             # Load and display images using PIL for compatibility with CTkLabel
             img1 = ctk.CTkImage(Image.open("immagini/immagine1_lega.png"), size=(200, 200))
             img2 = ctk.CTkImage(Image.open("immagini/immagine2_lega.png"), size=(200, 200))
-            
+
+            ctk.CTkButton(self, text="lega1", command=self.lega1).pack(anchor="ne", padx=30, pady=30)
+            ctk.CTkButton(self, text="lega2", command=self.lega2).pack(anchor="ne", padx=70, pady=70)
+
             img_label1 = ctk.CTkLabel(self, image=img1, text="")
             img_label1.pack(side="left", padx=10)
 
@@ -35,3 +39,9 @@ class SchermataLeghe(ctk.CTkFrame):
 
     def logout(self):
         self.master.mostra_schermata_login()
+
+    def lega1(self):
+        self.master.mostra_schermata_home(self.username, lega="lega1")
+
+    def lega2(self):
+        self.master.mostra_schermata_home(self.username, lega="lega2")
