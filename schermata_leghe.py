@@ -22,18 +22,14 @@ class SchermataLeghe(ctk.CTkFrame):
 
     def mostra_immagini(self):
         try:
-            # Load and display images using PIL for compatibility with CTkLabel
+    
             img1 = ctk.CTkImage(Image.open("immagini/immagine1_lega.png"), size=(200, 200))
             img2 = ctk.CTkImage(Image.open("immagini/immagine2_lega.png"), size=(200, 200))
 
-            ctk.CTkButton(self, text="lega1", command=self.lega1).pack(anchor="ne", padx=30, pady=30)
-            ctk.CTkButton(self, text="lega2", command=self.lega2).pack(anchor="ne", padx=70, pady=70)
+    
+            ctk.CTkButton(self, text="", image=img1, command=self.lega1).pack(side="left", padx=10, pady=10)
+            ctk.CTkButton(self, text="", image=img2, command=self.lega2).pack(side="right", padx=10, pady=10)
 
-            img_label1 = ctk.CTkLabel(self, image=img1, text="")
-            img_label1.pack(side="left", padx=10)
-
-            img_label2 = ctk.CTkLabel(self, image=img2, text="")
-            img_label2.pack(side="right", padx=10)
         except Exception as e:
             ctk.CTkLabel(self, text=f"Errore nel caricamento delle immagini: {e}").pack()
 
