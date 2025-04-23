@@ -19,12 +19,30 @@ class App(tk.Tk):
     def mostra_schermata_login(self):
         # Rimuove qualsiasi binding globale di tasti rimasto dalla schermata iniziale
         self.unbind_all("<Key>")
-        self.cambia_frame("login", SchermataLogin)
+        if "login" in self.schermate:
+            self.schermate["login"].destroy()
+            del self.schermate["login"]
+        frame = SchermataLogin(self)
+        self.schermate["login"] = frame
+        
+        for i in self.schermate.values():
+            if i != frame:
+                i.pack_forget()
+        frame.pack(fill="both", expand=True)
 
     def mostra_schermata_registra(self):
         # Rimuove qualsiasi binding globale di tasti
         self.unbind_all("<Key>")
-        self.cambia_frame("registra", SchermataRegistra)
+        if "registra" in self.schermate:
+            self.schermate["registra"].destroy()
+            del self.schermate["registra"]
+        frame = SchermataRegistra(self)
+        self.schermate["registra"] = frame
+        
+        for i in self.schermate.values():
+            if i != frame:
+                i.pack_forget()
+        frame.pack(fill="both", expand=True)
 
     def mostra_schermata_leghe(self, username):
         self.unbind_all("<Key>")
