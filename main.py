@@ -5,6 +5,7 @@ from login import SchermataLogin
 from home import SchermataHome
 from giocatori import giocatori
 from schermata_leghe import SchermataLeghe
+from crea_lega import CreaLega
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -15,6 +16,20 @@ class App(tk.Tk):
 
     def mostra_schermata_inizio(self):
         self.cambia_frame("inizio", SchermataInizio)
+
+    def mostra_schermata_crea_lega(self, username):
+        # Rimuove qualsiasi binding globale di tasti rimasto dalla schermata iniziale
+        self.unbind_all("<Key>")
+        if "crea_lega" in self.schermate:
+            self.schermate["crea_lega"].destroy()
+            del self.schermate["crea_lega"]
+        frame = CreaLega(self, username)
+        self.schermate["crea_lega"] = frame
+        
+        for i in self.schermate.values():
+            if i != frame:
+                i.pack_forget()
+        frame.pack(fill="both", expand=True)
 
     def mostra_schermata_login(self):
         # Rimuove qualsiasi binding globale di tasti rimasto dalla schermata iniziale
