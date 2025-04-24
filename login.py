@@ -41,7 +41,7 @@ class SchermataLogin(ctk.CTkFrame):
             text="Non hai un account? Crealo ora!",
             command=self.master.mostra_schermata_registra,
             width=200, font=("Arial", 12))
-        self.create_account_button.grid(row=2, column=0, columnspan=2, pady=10)
+        self.create_account_button.grid(row=2, column=0, columnspan=2, pady=20)
 
         self.error_label = ctk.CTkLabel(self.frame_centrale, text="", text_color="red", font=("Poppins", 14))
         self.error_label.grid(row=3, column=0, columnspan=2)
