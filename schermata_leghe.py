@@ -30,6 +30,7 @@ class SchermataLeghe(ctk.CTkFrame):
             ctk.CTkButton(self, text="", image=img1, command=self.lega1).pack(side="left", padx=10, pady=10)
             ctk.CTkButton(self, text="", image=img2, command=self.lega2).pack(side="right", padx=10, pady=10)
 
+            ctk.CTkButton(self, text="creazione lega", command=self.crea_lega).pack(anchor="ne", padx=10, pady=10)
         except Exception as e:
             ctk.CTkLabel(self, text=f"Errore nel caricamento delle immagini: {e}").pack()
 
@@ -41,3 +42,6 @@ class SchermataLeghe(ctk.CTkFrame):
 
     def lega2(self):
         self.master.mostra_schermata_home(self.username, lega="lega2")
+
+    def crea_lega(self):
+        self.master.mostra_schermata_crea_lega(self.username)
