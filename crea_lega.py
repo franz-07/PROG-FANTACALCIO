@@ -11,7 +11,7 @@ class CreaLega(ctk.CTkFrame):
 
         # Display username and logout button
         ctk.CTkLabel(self, text=f"Loggato come: {username}!", font=("Poppins", 12)).pack(anchor="ne", padx=5, pady=5)
-        ctk.CTkButton(self, text="Esci", command=self.logout).pack(anchor="ne", padx=5, pady=5)
+        ctk.CTkButton(self, text="Torna alle leghe", command=self.esci).pack(anchor="ne", padx=5, pady=5)
 
         # Title label
         ctk.CTkLabel(self, text="Crea la tua lega", font=("Poppins", 28)).pack(pady=20)
@@ -38,7 +38,7 @@ class CreaLega(ctk.CTkFrame):
 
         # Controllo: squadre devono avere nomi unici
         if len(set(squadre)) != len(squadre):
-            messagebox.showerror("Errore", "I nomi delle squadre devono essere unici!")
+            messagebox.showerror("Errore", "I nomi delle squadre devono essere differenti")
             return
 
         if not nome_lega or any(not nome for nome in squadre):
@@ -57,5 +57,5 @@ class CreaLega(ctk.CTkFrame):
         dettagli_squadre = "\n".join([f"{squadra}: {', '.join(players)}" for squadra, players in squadre_giocatori.items()])
         messagebox.showinfo("Successo", f"Lega '{nome_lega}' creata!\n\n{dettagli_squadre}")
 
-    def logout(self):
-        messagebox.showinfo("Logout", "Sei stato disconnesso.")
+    def esci(self):
+        self.master.mostra_schermata_leghe(self.username)

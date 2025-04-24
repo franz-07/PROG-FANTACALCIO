@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from PIL import Image
-
+from giocatori import giocatori
 
 ctk.set_appearance_mode("dark")  
 
@@ -35,19 +35,17 @@ class SchermataLeghe(ctk.CTkFrame):
             ctk.CTkButton(self, text="creazione lega", command=self.crea_lega).pack(anchor="ne", padx=10, pady=10)
         except Exception as e:
             ctk.CTkLabel(self, text=f"Errore nel caricamento delle immagini: {e}").pack()
+
     def logout(self):
         self.master.mostra_schermata_login()
 
     def lega1(self):
         self.master.mostra_schermata_home(self.username, lega="lega1")
 
+
     def lega2(self):
         self.master.mostra_schermata_home(self.username, lega="lega2")
 
-<<<<<<< Updated upstream
-    def crea_lega(self):
-        self.master.mostra_schermata_crea_lega(self.username)
-=======
+
     def lega3(self):
-        self.master.mostra_schermata_home(self.username, lega="crea la tua lega")
->>>>>>> Stashed changes
+        self.master.mostra_schermata_crea_lega(self.username)

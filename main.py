@@ -6,6 +6,7 @@ from home import SchermataHome
 from giocatori import giocatori
 from schermata_leghe import SchermataLeghe
 from crea_lega import CreaLega
+
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
