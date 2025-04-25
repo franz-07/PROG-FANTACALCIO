@@ -32,7 +32,7 @@ class SchermataLeghe(ctk.CTkFrame):
             ctk.CTkButton(button_frame, text="", image=img2, command=self.lega2).pack(side="left", padx=10)
             ctk.CTkButton(button_frame, text="", image=img3, command=self.lega3).pack(side="left", padx=10)
 
-            ctk.CTkButton(self, text="creazione lega", command=self.crea_lega).pack(anchor="ne", padx=10, pady=10)
+        
         except Exception as e:
             ctk.CTkLabel(self, text=f"Errore nel caricamento delle immagini: {e}").pack()
 
