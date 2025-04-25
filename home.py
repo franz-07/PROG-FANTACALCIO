@@ -6,7 +6,7 @@ from customtkinter import CTk, CTkFrame, CTkLabel, CTkButton, CTkScrollbar, CTkO
 from tkinter import ttk
 import pyglet
 from giocatori import giocatori
-from PIL import Image, ImageTk
+from PIL import Image
 
 class SchermataHome(ctk.CTkFrame):
     def __init__(self, master, username, giocatori, lega):
@@ -18,8 +18,14 @@ class SchermataHome(ctk.CTkFrame):
         ctk.CTkLabel(self, text=f"Loggato come: {username}!", font=("Poppins", 10)).pack(anchor="ne", padx=5, pady=5)
         ctk.CTkButton(self, text="Esci", command=self.logout).pack(anchor="ne", padx=5, pady=5)
 
-        # Displaying the league name
-        ctk.CTkLabel(self, text=f"Benvenuto nella {lega}!", font=("Poppins", 18, "bold")).pack(pady=20)
+        nomi_lega = {
+            "lega1": "Lega 10",
+            "lega2": "Lega 5"
+        }
+        nome_visibile = nomi_lega.get(lega, lega)  # Se non trova, mostra il nome originale
+
+        ctk.CTkLabel(self, text=f"Benvenuto nella {nome_visibile}!", font=("Poppins", 20)).pack(pady=10)
+
 
         # Displaying the league image
         self.mostra_immagine_lega(lega)
@@ -28,26 +34,23 @@ class SchermataHome(ctk.CTkFrame):
         self.menu_tendina()
 
     def mostra_immagine_lega(self, lega):
+        if lega == "lega1":
+            immagine_path = "immagini/immagine1_lega.png"
+        elif lega == "lega2":
+            immagine_path = "immagini/immagine2_lega.png"
+        else:
+            return
+
         try:
-            # Ora carichiamo l'immagine direttamente in base alla lega
-            if lega == "1":
-                img_filename = "immagine1_lega.png"
-            elif lega == "2":
-                img_filename = "immagine2_lega.png"
-            else:
-                img_filename = None
+            img = Image.open(immagine_path)
+            self.img = ctk.CTkImage(img, size=(200, 200))  # ✅ usa CTkImage
 
-            if img_filename:
-                img = Image.open(f"immagini/{img_filename}")  # Carica l'immagine dalla cartella "immagini"
-                img = img.resize((300, 200))  # Ridimensiona l'immagine
-                img = ImageTk.PhotoImage(img)  # Converti l'immagine nel formato compatibile con tkinter
+            label_immagine = ctk.CTkLabel(self, image=self.img, text="")
+            label_immagine.pack(pady=20)
 
-                # Crea l'etichetta con l'immagine
-                ctk.CTkLabel(self, image=img).pack(pady=20)
-            else:
-                ctk.CTkLabel(self, text="Immagine non disponibile per questa lega.").pack()
         except Exception as e:
-            ctk.CTkLabel(self, text=f"Errore nel caricamento dell'immagine della lega: {e}").pack()
+            ctk.CTkLabel(self, text=f"Errore caricamento immagine: {e}").pack()
+
 
     def tabella_giocatori(self):
         colonne = ("Nome", "Squadra", "Ruoli", "Numero Maglia", "SI/NO")
