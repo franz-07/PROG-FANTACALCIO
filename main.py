@@ -6,6 +6,7 @@ from home import SchermataHome
 from giocatori import giocatori
 from schermata_leghe import SchermataLeghe
 from crea_lega import CreaLega
+from mercato import SchermataMercato
 
 class App(tk.Tk):
     def __init__(self):
@@ -75,9 +76,13 @@ class App(tk.Tk):
         frame.pack(fill="both", expand=True)
 
     def mostra_schermata_home(self, username, lega):
-        # Rimuove qualsiasi binding globale di tasti
         self.unbind_all("<Key>")
-        # Se esiste già la home, distruggila
+
+        # Salvo username, giocatori e lega nell'app
+        self.username = username
+        self.giocatori = giocatori
+        self.lega = lega
+
         if "home" in self.schermate:
             self.schermate["home"].destroy()
             del self.schermate["home"]
@@ -85,13 +90,12 @@ class App(tk.Tk):
         frame = SchermataHome(self, username, giocatori, lega)
         self.schermate["home"] = frame
 
-        # Nascondi tutti gli altri frame
         for i in self.schermate.values():
             if i != frame:
                 i.pack_forget()
 
-        # Mostra la nuova home
         frame.pack(fill="both", expand=True)
+
 
     def cambia_frame(self, nome, frame_class):
         # Rimuove event listener globali di tasti per prevenire ritorni imprevisti
@@ -108,6 +112,23 @@ class App(tk.Tk):
 
         # Mostra il frame richiesto
         frame.pack(fill="both", expand=True)
+
+    def mostra_schermata_mercato(self):
+        self.unbind_all("<Key>")
+        
+        if "mercato" in self.schermate:
+            self.schermate["mercato"].destroy()
+            del self.schermate["mercato"]
+        
+        frame = SchermataMercato(self, self.username, self.giocatori, self.lega)
+        self.schermate["mercato"] = frame
+        
+        for i in self.schermate.values():
+            if i != frame:
+                i.pack_forget()
+        
+        frame.pack(fill="both", expand=True)
+
 
 if __name__ == "__main__":
     app = App()

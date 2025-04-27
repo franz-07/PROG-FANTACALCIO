@@ -8,6 +8,7 @@ import pyglet
 from giocatori import giocatori
 from PIL import Image
 
+
 class SchermataHome(ctk.CTkFrame):
     def __init__(self, master, username, giocatori, lega):
         super().__init__(master)
@@ -98,10 +99,10 @@ class SchermataHome(ctk.CTkFrame):
         ctk.CTkButton(self.frame_menu, text="Giocatori", command=self.aprichiudi_tabella_giocatori).pack(fill="x", pady=5)
 
         # Aggiungi i nuovi bottoni
-        ctk.CTkButton(self.frame_menu, text="Mercato", command=self.dummy_function).pack(fill="x", pady=5)
-        ctk.CTkButton(self.frame_menu, text="Partite", command=self.dummy_function).pack(fill="x", pady=5)
-        ctk.CTkButton(self.frame_menu, text="Giornali", command=self.dummy_function).pack(fill="x", pady=5)
-        ctk.CTkButton(self.frame_menu, text="Formazione", command=self.dummy_function).pack(fill="x", pady=5)
+        ctk.CTkButton(self.frame_menu, text="Mercato", command=self.apri_mercato).pack(fill="x", pady=5)
+        ctk.CTkButton(self.frame_menu, text="Partite").pack(fill="x", pady=5)
+        ctk.CTkButton(self.frame_menu, text="Giornali").pack(fill="x", pady=5)
+        ctk.CTkButton(self.frame_menu, text="Formazione").pack(fill="x", pady=5)
 
     def aprichhiudi_menu(self):
         if self.menu_aperto:
@@ -126,9 +127,8 @@ class SchermataHome(ctk.CTkFrame):
             self.frame_tabella = None
         self.tabella_visibile = False
 
-    def dummy_function(self):
-        # Placeholder function for the new buttons
-        print("Button clicked!")
+    def apri_mercato(self):
+        self.master.mostra_schermata_mercato()
 
     def logout(self):
         self.master.mostra_schermata_login()
