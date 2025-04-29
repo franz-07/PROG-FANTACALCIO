@@ -7,7 +7,7 @@ from giocatori import giocatori
 from schermata_leghe import SchermataLeghe
 from crea_lega import CreaLega
 from mercato import SchermataMercato
-
+from formazione import SchermataFormazione
 
 
 class App(tk.Tk):
@@ -81,7 +81,7 @@ class App(tk.Tk):
         frame.pack(fill="both", expand=True)
 
 
-    def mostra_schermata_home(self, username, lega, genera_squadre):
+    def mostra_schermata_home(self, username, lega, genera_squadre, formazione=None):
         self.unbind_all("<Key>")
 
         # Inizializza gli attributi globali
@@ -103,7 +103,28 @@ class App(tk.Tk):
         frame.pack(fill="both", expand=True)
 
 
+    def mostra_schermata_formazione(self, username, lega):
+        self.unbind_all("<Key>")  # Rimuove eventuali binding di tasti
 
+        # Controlla che gli attributi siano stati inizializzati
+        if not hasattr(self, "username") or not hasattr(self, "lega"):
+            raise AttributeError("Gli attributi 'username' e 'lega' non sono stati inizializzati.")
+
+        # Rimuove la schermata formazione esistente (se c'è)
+        if "formazione" in self.schermate:
+            self.schermate["formazione"].destroy()
+            del self.schermate["formazione"]
+
+        # Crea una nuova istanza della schermata formazione
+        frame = SchermataFormazione(self, self.giocatori, username, lega)
+        self.schermate["formazione"] = frame
+
+        # Nasconde tutte le altre schermate e mostra la schermata formazione
+        for i in self.schermate.values():
+            if i != frame:
+                i.pack_forget()
+
+        frame.pack(fill="both", expand=True)
 
     def cambia_frame(self, nome, frame_class):
         # Rimuove event listener globali di tasti per prevenire ritorni imprevisti

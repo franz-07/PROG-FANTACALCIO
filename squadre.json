@@ -105,6 +105,218 @@
                 "Lazzari M",
                 "Mkhitaryan"
             ]
+        ],
+        "lega3": [
+            [
+                "Gabbia",
+                "Biraghi",
+                "Juan Jesus",
+                "Mbangula",
+                "Giannetti L",
+                "Beukema",
+                "Luan Patrick",
+                "Benedyczak",
+                "Pereira P",
+                "Carboni F",
+                "Konate I"
+            ],
+            [
+                "Casadei",
+                "Terracciano F",
+                "Serdar",
+                "Scott",
+                "Milinkovic-Savic V",
+                "Sagrado",
+                "Buongiorno",
+                "Palestra",
+                "Pellegrini",
+                "Retegui",
+                "Haas"
+            ],
+            [
+                "Jovic",
+                "Rui Modesto",
+                "Petagna",
+                "Felici",
+                "Cabal",
+                "Messias",
+                "Lovric",
+                "Popovic A",
+                "Martinez L",
+                "Bondo",
+                "Valenti"
+            ],
+            [
+                "Valenti",
+                "Gallo",
+                "Vojvoda",
+                "Anghele",
+                "Beukema",
+                "Almqvist",
+                "Meret",
+                "Cande",
+                "Thuram K",
+                "Banda",
+                "Moreno M"
+            ],
+            [
+                "Linetty",
+                "Donnarumma A",
+                "Haps",
+                "Coco S",
+                "Thorsby",
+                "Isaksen",
+                "Ferguson",
+                "Walukiewicz",
+                "Morente",
+                "Reina",
+                "Zampano"
+            ],
+            [
+                "Gaetano",
+                "Tiago Gabriel",
+                "Caprini",
+                "Vlahovic V",
+                "Ibrahimovic A",
+                "Sulejmani",
+                "Cancellieri",
+                "Balogh",
+                "Charpentier",
+                "Zerbin",
+                "Fazzini"
+            ],
+            [
+                "Marin R",
+                "Seghetti",
+                "Djimsiti",
+                "Rrahmani",
+                "Karamoh",
+                "El Shaarawy",
+                "Terracciano F",
+                "Calabria",
+                "Colpani",
+                "Pinsoglio",
+                "Holm"
+            ],
+            [
+                "Mosquera",
+                "Darmian",
+                "Gallo",
+                "Buongiorno",
+                "Sia",
+                "Leali",
+                "Skorupski",
+                "Sanchez",
+                "Cuenca",
+                "Hysaj",
+                "Vigorito"
+            ]
+        ],
+        "lega1": [
+            [
+                "Coco S",
+                "Carnesecchi",
+                "Achour",
+                "Smolcic",
+                "Napolitano",
+                "Calabria",
+                "Makoumbou",
+                "Soppy",
+                "Popovic A",
+                "Marcandalli",
+                "Caprile"
+            ],
+            [
+                "Cutrone",
+                "Castrovilli",
+                "Nuno Tavares",
+                "Perez A",
+                "Salama",
+                "Marras T",
+                "De Roon",
+                "Petagna",
+                "Casadei",
+                "McKennie",
+                "Gagliardini"
+            ],
+            [
+                "Omoregbe",
+                "Carboni F",
+                "Ederson J",
+                "Palomino",
+                "Nuno Tavares",
+                "Mina",
+                "Donnarumma A",
+                "Terracciano F",
+                "Kolo Muani",
+                "Perilli",
+                "Izzo"
+            ],
+            [
+                "Maripan",
+                "Martinez J",
+                "Zanoli",
+                "Guessand",
+                "Walukiewicz",
+                "Omoregbe",
+                "Erlic",
+                "Lazzari M",
+                "Pierret",
+                "Danilo Veiga",
+                "Sagrado"
+            ],
+            [
+                "Sommer",
+                "Reijnders",
+                "Ondrejka",
+                "Vignato S",
+                "Muhameti",
+                "Azon",
+                "Ekkelenkamp",
+                "Radu I",
+                "Yildiz",
+                "Perez A",
+                "Frese"
+            ],
+            [
+                "Kean",
+                "Zeroli",
+                "Vigorito",
+                "Frattesi",
+                "Thauvin",
+                "Padelli",
+                "De Nipoti",
+                "Smolcic",
+                "Ferguson",
+                "Lazovic",
+                "Perilli"
+            ],
+            [
+                "Sala M",
+                "Napolitano",
+                "De Gea",
+                "Contini",
+                "Colpani",
+                "Rubino T",
+                "Perrone",
+                "Harroui",
+                "Caprari",
+                "Braunoder",
+                "De Vrij"
+            ],
+            [
+                "Adzic",
+                "Rovella",
+                "Bondo",
+                "Kolasinac",
+                "Baldanzi",
+                "Strefezza",
+                "Toure I",
+                "Rui Modesto",
+                "Tameze",
+                "Palomino",
+                "Padelli"
+            ]
         ]
     },
     "2": {
@@ -212,6 +424,114 @@
                 "Zurkowski",
                 "Adli",
                 "Bellanova"
+            ]
+        ]
+    },
+    "9": {
+        "lega1": [
+            [
+                "Zappa",
+                "Rui Modesto",
+                "Marusic",
+                "Marin R",
+                "Mota",
+                "Martin",
+                "Zerbin",
+                "Luvumbo",
+                "Marianucci",
+                "Burnete",
+                "Kasa"
+            ],
+            [
+                "Gabrielloni",
+                "Soule",
+                "De Sciglio",
+                "Ibrahimovic A",
+                "Fruchtl",
+                "Birindelli",
+                "Abdulhamid",
+                "Brorsson",
+                "Gaetano",
+                "Jimenez A",
+                "Popovic A"
+            ],
+            [
+                "Zampano",
+                "Byar",
+                "Luvumbo",
+                "Karamoh",
+                "Gabbia",
+                "Doumbia I",
+                "Nico Paz",
+                "Gourna Douath",
+                "Buongiorno",
+                "Angelino",
+                "Goglichidze"
+            ],
+            [
+                "Caprini",
+                "Simeone",
+                "Renato Veiga",
+                "Venturino",
+                "Martins K",
+                "Pinamonti",
+                "Cruz J",
+                "Grassi",
+                "Makoumbou",
+                "Danilo Veiga",
+                "Fazzini"
+            ],
+            [
+                "Fagioli",
+                "Ikone",
+                "Ravaglia F",
+                "Seghetti",
+                "Birindelli",
+                "Balotelli",
+                "Tchatchoua",
+                "Lykogiannis",
+                "Cancellieri",
+                "De Silvestri",
+                "Hysaj"
+            ],
+            [
+                "Leoni",
+                "Malinovskyi",
+                "Posch",
+                "Hummels",
+                "Adopo",
+                "Ghilardi",
+                "Gatti",
+                "Cutrone",
+                "Kovalenko",
+                "Vojvoda",
+                "Tengstedt"
+            ],
+            [
+                "Neres",
+                "Felipe Jack",
+                "Emerson Royal",
+                "Forson",
+                "Felici",
+                "Aebischer",
+                "Coppola D",
+                "Augello",
+                "Siegrist",
+                "Piccoli",
+                "Berisha M"
+            ],
+            [
+                "Romagnoli A",
+                "Coco S",
+                "Razi",
+                "Jankto",
+                "Schuurs",
+                "Otoa",
+                "Salah Eddine",
+                "Marras T",
+                "Gagliardini",
+                "Vitinha",
+                "Reina"
             ]
         ]
     }
