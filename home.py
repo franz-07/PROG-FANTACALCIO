@@ -11,8 +11,9 @@ import random
 from gestione_squadre import carica_dati_squadre, salva_dati_squadre
 
 class SchermataHome(ctk.CTkFrame):
-    def __init__(self, master, username, giocatori, lega, genera_squadre=False):
+    def __init__(self, master, username, giocatori, lega, genera_squadre=False,formazione=None):
         super().__init__(master)
+        
         self.master = master
         self.lega = lega
         self.username = username
@@ -146,7 +147,6 @@ class SchermataHome(ctk.CTkFrame):
 
     def apri_formazione(self):
         self.master.mostra_schermata_formazione(self.username, self.lega)
-
 
 
     def genera_squadre(self):
