@@ -9,6 +9,7 @@ from crea_lega import CreaLega
 from mercato import SchermataMercato
 from formazione import SchermataFormazione
 from simulazione_partita import SchermataSimulazione
+from giornali import SchermataGiornali
 
 class App(tk.Tk):
     def __init__(self):
@@ -193,8 +194,25 @@ class App(tk.Tk):
         # Mostra la schermata del mercato
         frame.pack(fill="both", expand=True)
 
+    def mostra_schermata_giornali(self, username, lega):
+        self.unbind_all("<Key>")  # Rimuove eventuali binding di tasti
 
-        
+        # Rimuove la schermata esistente (se c'è)
+        if "giornali" in self.schermate:
+            self.schermate["giornali"].destroy()
+            del self.schermate["giornali"]
+
+        # Crea una nuova istanza della schermata Giornali
+        frame = SchermataGiornali(self, username, lega)
+        self.schermate["giornali"] = frame
+
+        # Nasconde tutte le altre schermate
+        for i in self.schermate.values():
+            if i != frame:
+                i.pack_forget()
+
+        # Mostra la schermata Giornali
+        frame.pack(fill="both", expand=True)
 
 if __name__ == "__main__":
     app = App()

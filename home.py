@@ -113,14 +113,12 @@ class SchermataHome(ctk.CTkFrame):
         # Titolo
         ctk.CTkLabel(self.frame_menu, text="Menu", font=("Poppins", 16), text_color="white").pack(pady=10)
 
-        # Pulsante per la tabella
+        # Pulsanti del menu
         ctk.CTkButton(self.frame_menu, text="Giocatori", command=self.aprichiudi_tabella_giocatori).pack(fill="x", pady=5)
-
-        # Aggiungi i nuovi bottoni
         ctk.CTkButton(self.frame_menu, text="Mercato", command=self.apri_mercato).pack(fill="x", pady=5)
         ctk.CTkButton(self.frame_menu, text="Partite", command=self.apri_partite).pack(fill="x", pady=5)
-        ctk.CTkButton(self.frame_menu, text="Giornali").pack(fill="x", pady=5)
-        ctk.CTkButton(self.frame_menu, text="Formazione",command=self.apri_formazione).pack(fill="x", pady=5)
+        ctk.CTkButton(self.frame_menu, text="Giornali", command=self.apri_giornali).pack(fill="x", pady=5)
+        ctk.CTkButton(self.frame_menu, text="Formazione", command=self.apri_formazione).pack(fill="x", pady=5)
 
     def aprichhiudi_menu(self):
         if self.menu_aperto:
@@ -157,7 +155,8 @@ class SchermataHome(ctk.CTkFrame):
     def apri_partite(self):
         self.master.mostra_schermata_partite(self.username, self.lega, genera_squadre= False)
 
-
+    def apri_giornali(self):
+        self.master.mostra_schermata_giornali(self.username, self.lega)
 
     def genera_squadre(self):
         giocatori_disponibili = {nome: dati for nome, dati in self.giocatori.items() if dati[3] == "SI"}
