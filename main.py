@@ -126,7 +126,7 @@ class App(tk.Tk):
 
         frame.pack(fill="both", expand=True)
 
-    def mostra_schermata_partite(self, username, lega):
+    def mostra_schermata_partite(self, username, lega, genera_squadre):
         self.unbind_all("<Key>")  # Rimuove eventuali binding di tasti
         
         self.username = username
@@ -138,7 +138,7 @@ class App(tk.Tk):
             del self.schermate["partite"]
 
         # Crea una nuova istanza della schermata formazione
-        frame = SchermataSimulazione(self, self.giocatori, username, lega)
+        frame = SchermataSimulazione(self, username, lega, genera_squadre)
         self.schermate["formazione"] = frame
 
         # Nasconde tutte le altre schermate e mostra la schermata formazione

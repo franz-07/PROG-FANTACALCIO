@@ -4,14 +4,18 @@ import customtkinter as ctk
 
 
 class SchermataSimulazione(ctk.CTkFrame):
-    def __init__(self, master, username):
+        
+    def __init__(self, master, username, giocatori, lega):
         super().__init__(master)
         self.master = master
         self.username = username
+        self.giocatori = giocatori
+        self.lega = lega
+        
 
-        # Etichette di intestazione
-        ctk.CTkLabel(self, text=f"Loggato come: {username}!", font=("Poppins", 12)).pack(anchor="ne", padx=5, pady=5)
-        ctk.CTkButton(self, text="Esci", command=self.logout).pack(anchor="ne", padx=5, pady=5)
+        ctk.CTkLabel(self, text=f"Loggato come: {username} in lega {lega}!", font=("Poppins", 12)).pack(anchor="ne", padx=5, pady=5)
+
+        ctk.CTkButton(self, text="Torna alla home", command=self.torna_home).pack(anchor="ne", padx=5, pady=5)
 
         ctk.CTkLabel(self, text="Partita in corso..", font=("Poppins", 24, "bold")).pack(pady=20)
 
@@ -47,5 +51,5 @@ class SchermataSimulazione(ctk.CTkFrame):
         self.central_button.configure(image=self.img_cambiata)
 
 
-    def logout(self):
-        self.master.mostra_schermata_login()
+    def torna_home(self):
+        self.master.mostra_schermata_home(self.username, self.giocatori, self.lega, False)
