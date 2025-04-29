@@ -8,7 +8,7 @@ from schermata_leghe import SchermataLeghe
 from crea_lega import CreaLega
 from mercato import SchermataMercato
 from formazione import SchermataFormazione
-
+from simulazione_partita import SchermataSimulazione
 
 class App(tk.Tk):
     def __init__(self):
@@ -103,6 +103,31 @@ class App(tk.Tk):
 
         frame.pack(fill="both", expand=True)
 
+
+
+    def mostra_schermata_partite(self, username, lega, genera_squadre=False):
+        self.unbind_all("<Key>")  # Rimuove eventuali binding di tasti
+
+        # Controlla che gli attributi siano stati inizializzati
+        if not hasattr(self, "username") or not hasattr(self, "lega"):
+            raise AttributeError("Gli attributi 'username' e 'lega' non sono stati inizializzati.")
+
+        # Rimuove la schermata esistente (se c'è)
+        if "partite" in self.schermate:
+            self.schermate["partite"].destroy()
+            del self.schermate["partite"]
+
+        # Crea una nuova istanza della schermata Partite
+        frame = SchermataSimulazione(self, username, lega, genera_squadre)
+        self.schermate["partite"] = frame
+
+        # Nasconde tutte le altre schermate
+        for i in self.schermate.values():
+            if i != frame:
+                i.pack_forget()
+
+        # Mostra la schermata delle partite
+        frame.pack(fill="both", expand=True)
 
 
     def mostra_schermata_formazione(self, username, lega):
