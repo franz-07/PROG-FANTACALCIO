@@ -20,35 +20,38 @@ class SchermataSimulazione(ctk.CTkFrame):
         ctk.CTkLabel(self, text="Partita in corso..", font=("Poppins", 24, "bold")).pack(pady=20)
 
         self.mostra_immagini()
-
+    
     def mostra_immagini(self):
         try:
             # Caricamento delle immagini
-            self.img1 = ctk.CTkImage(Image.open("immagini/immagine1_lega.png"), size=(200, 200))
-            self.img2 = ctk.CTkImage(Image.open("immagini/immagine2_lega.png"), size=(200, 200))
-            self.img3 = ctk.CTkImage(Image.open("immagini/immagine3_lega.png"), size=(200, 200))
-            self.img_cambiata = ctk.CTkImage(Image.open("immagini/immagine_cambiata.png"), size=(200, 200))
+            self.img_left = ctk.CTkImage(Image.open("immagini/Squadra1.png"), size=(200, 200))
+            self.img_right = ctk.CTkImage(Image.open("immagini/Squadra2.png"), size=(200, 200))
+            self.img_center_1 = ctk.CTkImage(Image.open("immagini/start.png"), size=(200, 200))
+            self.img_center_2 = ctk.CTkImage(Image.open("immagini/finished.png"), size=(200, 200))
 
-            # Creazione del frame per la disposizione orizzontale
-            button_frame = ctk.CTkFrame(self)
-            button_frame.pack(pady=20)
+            # Disposizione delle immagini laterali
+            self.left_label = ctk.CTkLabel(self, text="", image=self.img_left)
+            self.left_label.pack(side="left", padx=20, pady=20)
 
-            # Bottone immagine sinistra
-            ctk.CTkButton(button_frame, text="Inizia la partita", image=self.img1, command=self.lega1).pack(side="left", padx=10)
+            self.right_label = ctk.CTkLabel(self, text="", image=self.img_right)
+            self.right_label.pack(side="right", padx=20, pady=20)
 
-            # Bottone immagine centrale
-            self.central_button = ctk.CTkButton(button_frame, text="Inizia la partita", image=self.img2, command=self.cambia_immagine_centrale)
-            self.central_button.pack(side="left", padx=10)
+            # Immagine centrale (iniziale)
+            self.center_label = ctk.CTkLabel(self, text="", image=self.img_center_1)
+            self.center_label.pack(pady=10)
 
-            # Bottone immagine destra
-            ctk.CTkButton(button_frame, text="Inizia la partita", image=self.img3, command=self.lega3).pack(side="left", padx=10)
+            # Bottone sotto l'immagine centrale
+            self.center_button = ctk.CTkButton(self, text="Inizia partita", command=self.cambia_immagine)
+            self.center_button.pack(pady=10)
 
         except Exception as e:
             ctk.CTkLabel(self, text=f"Errore nel caricamento delle immagini: {e}").pack()
 
-    def cambia_immagine_centrale(self):
-        # Cambia l'immagine del pulsante centrale
-        self.central_button.configure(image=self.img_cambiata)
+    def cambia_immagine(self):
+    
+        # Aspetta 3 secondi per cambiare alla prima immagine
+        self.master.after(3000, lambda: self.center_label.configure(image=self.img_center_2))
+
 
 
     def torna_home(self):
