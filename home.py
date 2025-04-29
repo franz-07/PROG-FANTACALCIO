@@ -116,7 +116,7 @@ class SchermataHome(ctk.CTkFrame):
         ctk.CTkButton(self.frame_menu, text="Mercato", command=self.apri_mercato).pack(fill="x", pady=5)
         ctk.CTkButton(self.frame_menu, text="Partite").pack(fill="x", pady=5)
         ctk.CTkButton(self.frame_menu, text="Giornali").pack(fill="x", pady=5)
-        ctk.CTkButton(self.frame_menu, text="Formazione").pack(fill="x", pady=5)
+        ctk.CTkButton(self.frame_menu, text="Formazione",command=self.apri_formazione).pack(fill="x", pady=5)
 
     def aprichhiudi_menu(self):
         if self.menu_aperto:
@@ -143,6 +143,9 @@ class SchermataHome(ctk.CTkFrame):
 
     def apri_mercato(self):
         self.master.mostra_schermata_mercato()
+
+    def apri_formazione(self):
+        self.master.mostra_schermata_formazione(self.username, self.lega)
 
 
 
