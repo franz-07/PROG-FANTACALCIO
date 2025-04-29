@@ -8,6 +8,8 @@ from schermata_leghe import SchermataLeghe
 from crea_lega import CreaLega
 from mercato import SchermataMercato
 
+
+
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -63,22 +65,26 @@ class App(tk.Tk):
 
     def mostra_schermata_leghe(self, username):
         self.unbind_all("<Key>")
+        self.username = username  # Imposta 'username' qui
+        # Assicurati che 'giocatori' e 'lega' siano inizializzati altrove
         if "leghe" in self.schermate:
             self.schermate["leghe"].destroy()
             del self.schermate["leghe"]
+
         frame = SchermataLeghe(self, username)
-        self.schermate["leghe"] = frame    
-        
+        self.schermate["leghe"] = frame
+
         for i in self.schermate.values():
             if i != frame:
                 i.pack_forget()
-        
+
         frame.pack(fill="both", expand=True)
 
-    def mostra_schermata_home(self, username, lega):
+
+    def mostra_schermata_home(self, username, lega, genera_squadre):
         self.unbind_all("<Key>")
 
-        # Salvo username, giocatori e lega nell'app
+        # Inizializza gli attributi globali
         self.username = username
         self.giocatori = giocatori
         self.lega = lega
@@ -87,7 +93,7 @@ class App(tk.Tk):
             self.schermate["home"].destroy()
             del self.schermate["home"]
 
-        frame = SchermataHome(self, username, giocatori, lega)
+        frame = SchermataHome(self, username, giocatori, lega, genera_squadre)
         self.schermate["home"] = frame
 
         for i in self.schermate.values():
@@ -95,6 +101,8 @@ class App(tk.Tk):
                 i.pack_forget()
 
         frame.pack(fill="both", expand=True)
+
+
 
 
     def cambia_frame(self, nome, frame_class):
@@ -114,21 +122,31 @@ class App(tk.Tk):
         frame.pack(fill="both", expand=True)
 
     def mostra_schermata_mercato(self):
-        self.unbind_all("<Key>")
-        
+        self.unbind_all("<Key>")  # Rimuove eventuali binding di tasti
+
+        # Assicurati che gli attributi siano stati inizializzati (username, giocatori, lega)
+        if not hasattr(self, "username") or not hasattr(self, "giocatori") or not hasattr(self, "lega"):
+            raise AttributeError("Gli attributi 'username', 'giocatori' e 'lega' non sono stati inizializzati.")
+
+        # Rimuove la schermata esistente (se c'è)
         if "mercato" in self.schermate:
             self.schermate["mercato"].destroy()
             del self.schermate["mercato"]
-        
+
+        # Crea una nuova istanza della schermata Mercato con gli attributi definiti
         frame = SchermataMercato(self, self.username, self.giocatori, self.lega)
         self.schermate["mercato"] = frame
-        
+
+        # Nasconde tutte le altre schermate
         for i in self.schermate.values():
             if i != frame:
                 i.pack_forget()
-        
+
+        # Mostra la schermata del mercato
         frame.pack(fill="both", expand=True)
 
+
+        
 
 if __name__ == "__main__":
     app = App()

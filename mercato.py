@@ -158,4 +158,4 @@ class SchermataMercato(ctk.CTkFrame):
                 messagebox.showerror("Errore", f"Errore nel salvataggio: {str(e)}")
 
     def torna_home(self):
-        self.master.mostra_schermata_home(self.username, self.lega)
+        self.master.mostra_schermata_home(self.username, self.lega, genera_squadre=False)

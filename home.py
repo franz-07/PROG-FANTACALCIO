@@ -7,12 +7,26 @@ from tkinter import ttk
 import pyglet
 from giocatori import giocatori
 from PIL import Image
-
+import random
+from gestione_squadre import carica_dati_squadre, salva_dati_squadre
 
 class SchermataHome(ctk.CTkFrame):
-    def __init__(self, master, username, giocatori, lega):
+    def __init__(self, master, username, giocatori, lega, genera_squadre=False):
         super().__init__(master)
         self.master = master
+        self.lega = lega
+        self.username = username
+        self.giocatori = giocatori
+        self.dati_squadre = carica_dati_squadre()####
+
+        if genera_squadre:
+            if username in self.dati_squadre and lega in self.dati_squadre[username]:
+                print("Squadre già generate per l'utente e la lega. Caricamento...")
+                self.squadre = self.dati_squadre[username][lega]
+            else:
+                print("Generazione nuove squadre...")
+                self.genera_squadre()
+
         ctk.set_appearance_mode("dark")
 
         # Displaying the user information and logout button
@@ -44,7 +58,7 @@ class SchermataHome(ctk.CTkFrame):
 
         try:
             img = Image.open(immagine_path)
-            self.img = ctk.CTkImage(img, size=(200, 200))  # ✅ usa CTkImage
+            self.img = ctk.CTkImage(img, size=(200, 200))  # usa CTkImage
 
             label_immagine = ctk.CTkLabel(self, image=self.img, text="")
             label_immagine.pack(pady=20)
@@ -130,5 +144,45 @@ class SchermataHome(ctk.CTkFrame):
     def apri_mercato(self):
         self.master.mostra_schermata_mercato()
 
+
+
+    def genera_squadre(self):
+        giocatori_disponibili = {nome: dati for nome, dati in self.giocatori.items() if dati[3] == "SI"}
+
+        if len(giocatori_disponibili) < 88:  # 8 squadre * 11 giocatori
+            raise ValueError("Non ci sono abbastanza giocatori disponibili per creare 8 squadre.")
+
+        self.squadre = []
+        for _ in range(8):
+            squadra = random.sample(list(giocatori_disponibili.keys()), 11)
+            self.squadre.append(squadra)
+            for giocatore in squadra:
+                self.giocatori[giocatore][3] = "NO"
+
+        self.salva_squadre()
+
+    def salva_squadre(self):
+        # Salva le squadre nel file JSON
+        if self.username not in self.dati_squadre:
+            self.dati_squadre[self.username] = {}
+        self.dati_squadre[self.username][self.lega] = self.squadre
+        salva_dati_squadre(self.dati_squadre)
+
+        print(f"Squadre salvate per l'utente '{self.username}' nella lega '{self.lega}'.")
+
+    def aggiorna_file_giocatori(self):
+        with open("giocatori.py", "w") as file:
+            file.write("giocatori = {\n")
+            for nome, dati in self.giocatori.items():
+                file.write(f'    "{nome}": {dati},\n')
+            file.write("}\n")
+
     def logout(self):
+        self.resetta_giocatori_disponibili()
         self.master.mostra_schermata_login()
+
+    def resetta_giocatori_disponibili(self):
+        print("Resettando stato giocatori...")
+        for giocatore in self.giocatori:
+            self.giocatori[giocatore][3] = "SI"
+        self.aggiorna_file_giocatori()
