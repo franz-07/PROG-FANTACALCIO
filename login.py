@@ -4,6 +4,7 @@ import os
 import random
 import pyglet
 from PIL import Image
+from giocatori import giocatori
 
 pyglet.font.add_file("Poppins-Regular.ttf")
 
@@ -11,7 +12,7 @@ class SchermataLogin(ctk.CTkFrame):
     def __init__(self, master):
         super().__init__(master)
         self.master = master
-
+        self.resetta_giocatori_disponibili()
         self.grid_rowconfigure(0, weight=1)
         self.grid_rowconfigure(1, weight=0)
         self.grid_rowconfigure(2, weight=1)
@@ -104,3 +105,16 @@ class SchermataLogin(ctk.CTkFrame):
                     return
 
         self.error_label.configure(text="Utente non trovato")
+
+    def resetta_giocatori_disponibili(self):
+        print("Resetting stato giocatori...")  # Messaggio di debug
+        for giocatore in giocatori:
+            giocatori[giocatore][3] = "SI"  # Rendi tutti i giocatori disponibili
+        self.aggiorna_file_giocatori()
+
+    def aggiorna_file_giocatori(self):
+        with open("giocatori.py", "w") as file:
+            file.write("giocatori = {\n")
+            for nome, dati in giocatori.items():
+                file.write(f'    "{nome}": {dati},\n')
+            file.write("}\n")
