@@ -8,7 +8,7 @@ from schermata_leghe import SchermataLeghe
 from crea_lega import CreaLega
 from mercato import SchermataMercato
 from formazione import SchermataFormazione
-
+from simulazione_partita import SchermataSimulazione
 
 class App(tk.Tk):
     def __init__(self):
@@ -125,6 +125,36 @@ class App(tk.Tk):
                 i.pack_forget()
 
         frame.pack(fill="both", expand=True)
+
+    def mostra_schermata_partite(self, username, lega):
+        self.unbind_all("<Key>")  # Rimuove eventuali binding di tasti
+        
+        self.username = username
+        self.giocatori = giocatori
+        self.lega = lega
+
+        if "partite" in self.schermate:
+            self.schermate["partite"].destroy()
+            del self.schermate["partite"]
+
+        # Crea una nuova istanza della schermata formazione
+        frame = SchermataSimulazione(self, self.giocatori, username, lega)
+        self.schermate["formazione"] = frame
+
+        # Nasconde tutte le altre schermate e mostra la schermata formazione
+        for i in self.schermate.values():
+            if i != frame:
+                i.pack_forget()
+
+        frame.pack(fill="both", expand=True)
+
+
+        
+
+
+
+
+
 
     def cambia_frame(self, nome, frame_class):
         # Rimuove event listener globali di tasti per prevenire ritorni imprevisti
