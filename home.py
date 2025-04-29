@@ -115,9 +115,9 @@ class SchermataHome(ctk.CTkFrame):
 
         # Aggiungi i nuovi bottoni
         ctk.CTkButton(self.frame_menu, text="Mercato", command=self.apri_mercato).pack(fill="x", pady=5)
-        ctk.CTkButton(self.frame_menu, text="Partite", command=self.apri_partite).pack(fill="x", pady=5)
+        ctk.CTkButton(self.frame_menu, text="Partite").pack(fill="x", pady=5)
         ctk.CTkButton(self.frame_menu, text="Giornali").pack(fill="x", pady=5)
-        ctk.CTkButton(self.frame_menu, text="Formazione").pack(fill="x", pady=5)
+        ctk.CTkButton(self.frame_menu, text="Formazione",command=self.apri_formazione).pack(fill="x", pady=5)
 
     def aprichhiudi_menu(self):
         if self.menu_aperto:
@@ -145,14 +145,9 @@ class SchermataHome(ctk.CTkFrame):
     def apri_mercato(self):
         self.master.mostra_schermata_mercato()
 
-<<<<<<< Updated upstream
     def apri_formazione(self):
         self.master.mostra_schermata_formazione(self.username, self.lega)
 
-=======
-    def apri_partite(self):
-        self.master.mostra_schermata_partite(self.username, self.lega)
->>>>>>> Stashed changes
 
     def genera_squadre(self):
         giocatori_disponibili = {nome: dati for nome, dati in self.giocatori.items() if dati[3] == "SI"}
