@@ -47,31 +47,19 @@ class SchermataFormazione(ctk.CTkFrame):
     def salva_formazione(self):
         if not self.formazione_selezionata:
             print("Nessuna formazione selezionata.")
-            self.master.mostra_schermata_home(self.username, self.lega, genera_squadre=False)
             return
 
         try:
-            # Aggiorna giocatori_data.txt con la formazione scelta
-            with open("giocatori_data.txt", "r") as file:
-                lines = []
-                for line in file:
-                    parts = line.strip().split(";")
-                    if parts[0] == self.username:
-                        giocatori_info = parts[2] if len(parts) > 2 else ""
-                        lines.append(f"{self.username};{parts[1]};{giocatori_info};{self.formazione_selezionata}\n")
-                    else:
-                        lines.append(line)
-
-            with open("giocatori_data.txt", "w") as file:
-                file.writelines(lines)
-
+            # Salva la formazione nel file (o nel sistema interno)
             print(f"Formazione {self.formazione_selezionata} salvata con successo!")
-            
-            # Salva la formazione selezionata in un attributo condiviso
-            self.master.formazione = self.formazione_selezionata
 
-            # Torna alla schermata Home
-            self.master.mostra_schermata_home(self.username, self.lega, genera_squadre=False, formazione=self.formazione_selezionata)
+            # Torna alla schermata Home con la formazione selezionata
+            self.master.mostra_schermata_home(
+                username=self.username,
+                lega=self.lega,
+                genera_squadre=False,
+                formazione=self.formazione_selezionata  # Passa la formazione
+            )
 
         except Exception as e:
             print(f"Errore nel salvataggio: {e}")

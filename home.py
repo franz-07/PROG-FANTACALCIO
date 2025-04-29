@@ -11,7 +11,7 @@ import random
 from gestione_squadre import carica_dati_squadre, salva_dati_squadre
 
 class SchermataHome(ctk.CTkFrame):
-    def __init__(self, master, username, giocatori, lega, genera_squadre=False,formazione=None):
+    def __init__(self, master, username, giocatori, lega, genera_squadre=False,formazione="da selezionare"):
         super().__init__(master)
         
         self.master = master
@@ -19,6 +19,8 @@ class SchermataHome(ctk.CTkFrame):
         self.username = username
         self.giocatori = giocatori
         self.dati_squadre = carica_dati_squadre()####
+
+        self.formazine = formazione
 
         if genera_squadre:
             if username in self.dati_squadre and lega in self.dati_squadre[username]:
@@ -33,6 +35,7 @@ class SchermataHome(ctk.CTkFrame):
         # Displaying the user information and logout button
         ctk.CTkLabel(self, text=f"Loggato come: {username}!", font=("Poppins", 10)).pack(anchor="ne", padx=5, pady=5)
         ctk.CTkButton(self, text="Esci", command=self.logout).pack(anchor="ne", padx=5, pady=5)
+        ctk.CTkLabel(self, text=f"formazione come: {self.formazine}!", font=("Poppins", 10)).pack(anchor="ne", padx=5, pady=5)
 
         nomi_lega = {
             "lega1": "Lega 10",
