@@ -46,8 +46,8 @@ class SchermataGiornali(ctk.CTkFrame):
         ctk.CTkButton(self, text="Torna alla Home", command=self.torna_home).pack(pady=10)
 
     def carica_risultati(self):
-        # Nome del file basato sull'utente e sulla lega
-        filename = f"risultati_{self.username}_{self.lega}.txt"
+        # Nome del file fisso
+        filename = "risultati.txt"
         if not os.path.exists(filename):
             ctk.CTkLabel(self, text="Nessun risultato trovato.", font=("Poppins", 12)).pack(pady=10)
             return
@@ -59,33 +59,41 @@ class SchermataGiornali(ctk.CTkFrame):
         # Processa i risultati e li aggiunge alla tabella
         current_team = None
         team_data = {}
+        is_relevant = False  # Flag per verificare se i risultati appartengono all'utente e alla lega
         for line in lines:
             line = line.strip()
-            if line.startswith("Squadra A") or line.startswith("Squadra B"):
-                current_team = line[:-1]
-                team_data[current_team] = {}
-            elif ": " in line and current_team:
-                key, value = line.split(": ")
-                team_data[current_team][key] = value
-            elif line == "":
-                # Aggiunge i dati alla tabella quando finisce una squadra
-                if current_team and current_team in team_data:
-                    self.tabella.insert("", "end", values=(
-                        current_team,
-                        team_data[current_team].get("Gol", "0"),
-                        team_data[current_team].get("Assist", "0"),
-                        team_data[current_team].get("Autogol", "0"),
-                        team_data[current_team].get("Cartellini gialli", "0"),
-                        team_data[current_team].get("Cartellini rossi", "0"),
-                        team_data[current_team].get("Punteggio", "0")
-                    ))
-                current_team = None
+            if line.startswith(f"Utente: {self.username}") and f"Lega: {self.lega}" in line:
+                is_relevant = True
+            elif line.startswith("Utente:") and not line.startswith(f"Utente: {self.username}"):
+                is_relevant = False
+            elif line == "----------------------------------------":
+                continue  # Ignora il separatore
+            elif is_relevant:
+                if line.startswith("Squadra A") or line.startswith("Squadra B"):
+                    current_team = line[:-1]
+                    team_data[current_team] = {}
+                elif ": " in line and current_team:
+                    key, value = line.split(": ")
+                    team_data[current_team][key] = value
+                elif line == "":
+                    # Aggiunge i dati alla tabella quando finisce una squadra
+                    if current_team and current_team in team_data:
+                        self.tabella.insert("", "end", values=(
+                            current_team,
+                            team_data[current_team].get("Gol", "0"),
+                            team_data[current_team].get("Assist", "0"),
+                            team_data[current_team].get("Autogol", "0"),
+                            team_data[current_team].get("Cartellini gialli", "0"),
+                            team_data[current_team].get("Cartellini rossi", "0"),
+                            team_data[current_team].get("Punteggio", "0")
+                        ))
+                    current_team = None
 
     def torna_home(self):
         self.master.mostra_schermata_home(self.username, self.lega, genera_squadre=False)
 
 # Esempio di utilizzo
-if __name__ == "__main__":
+if __name__ == "__main__": 
     class App(ctk.CTk):
         def __init__(self):
             super().__init__()

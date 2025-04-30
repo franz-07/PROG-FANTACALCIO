@@ -71,17 +71,17 @@ class SchermataSimulazione(ctk.CTkFrame):
 
     def salva_risultati_su_file(self, risultati):
         try:
-            # Nome del file basato sull'utente e sulla lega
-            filename = f"risultati_{self.username}_{self.lega}.txt"
+            # Nome del file fisso
+            filename = "risultati.txt"
             with open(filename, "a", encoding="utf-8") as file:
-                file.write("=== Risultati Partita ===\n")
+                file.write(f"Utente: {self.username} | Lega: {self.lega}\n")
                 file.write(f"Squadra A:\n")
                 for key, value in risultati["Squadra A"].items():
                     file.write(f"{key}: {value}\n")
                 file.write("\nSquadra B:\n")
                 for key, value in risultati["Squadra B"].items():
                     file.write(f"{key}: {value}\n")
-                file.write("\n\n")
+                file.write("\n{'-'*40}\n\n")
         except Exception as e:
             print(f"Errore durante il salvataggio dei risultati: {e}")
 
