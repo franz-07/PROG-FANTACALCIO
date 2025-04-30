@@ -37,7 +37,6 @@ class SchermataLeghe(ctk.CTkFrame):
 
     def logout(self):
         # Ripristina lo stato dei giocatori al momento dell'uscita
-        self.resetta_giocatori_disponibili()
         self.master.mostra_schermata_login()
 
     def lega1(self):
