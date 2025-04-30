@@ -1,0 +1,21 @@
+Utente: 1 | Lega: False
+Squadra A:
+Gol: 3
+Assist: 3
+Autogol: 0
+Porta inviolata: 0
+Cartellini gialli: 1
+Cartellini rossi: 0
+Punteggio: 11.5
+
+Squadra B:
+Gol: 1
+Assist: 1
+Autogol: 0
+Porta inviolata: 0
+Cartellini gialli: 0
+Cartellini rossi: 0
+Punteggio: 4.0
+
+{'-'*40}
+
